@@ -1,14 +1,10 @@
 from .utils import *
 
 
-def retrieve_data(ra, dec, radius, start, end, url="https://ep.bao.ac.cn/ep/data_center/api/wxt_observation_data/"):
-    data = {
-        "ra": ra,
-        "dec": dec,
-        "radius": radius,
-        "start_datetime": start,
-        "end_datetime": end
-    }
+def retrieve_epdata(ra=None, dec=None, radius=None, start=None, end=None, url="https://ep.bao.ac.cn/ep/data_center/api/wxt_observation_data/"):
+    data = {k: v for k, v in locals().items() if v is not None}
+    del data['url']
+
     response = requests.post(url, data=data)
     if response.status_code == 200:
         return response.json()
