@@ -1,5 +1,11 @@
 from .utils import *
 
 class Stack(object):
+
     def __init__(self):
-        pass
+
+        self.extlist = None
+        self.explist = None
+        self.attlist = None
+
+        
